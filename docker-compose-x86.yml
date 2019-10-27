@@ -6,7 +6,7 @@ services:
       dockerfile: ./x86/Dockerfile
     labels:
       - "traefik.enable=true"
-      - "traefik.backend=standardfile"
+      - "traefik.backend=spotweb"
       - "traefik.frontend.rule=Host:spotweb.domain.tld"
       - "traefik.port=80"
       - "traefik.docker.network=traefik_proxy"
