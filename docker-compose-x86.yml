@@ -4,8 +4,22 @@ services:
     build:
       context: .
       dockerfile: ./x86/Dockerfile
-    ports:
-     - "8080:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=standardfile"
+      - "traefik.frontend.rule=Host:spotweb.domain.tld"
+      - "traefik.port=80"
+      - "traefik.docker.network=traefik_proxy"
+      - "traefik.frontend.headers.SSLRedirect=true"
+      - "traefik.frontend.headers.STSSeconds=315360000"
+      - "traefik.frontend.headers.browserXSSFilter=true"
+      - "traefik.frontend.headers.contentTypeNosniff=true"
+      - "traefik.frontend.headers.forceSTSHeader=true"
+      - "traefik.frontend.headers.SSLHost=spotweb.domain.tld"
+      - "traefik.frontend.headers.SSLForceHost=true"
+      - "traefik.frontend.headers.STSIncludeSubdomains=true"
+      - "traefik.frontend.headers.STSPreload=true"
+      - "traefik.frontend.headers.frameDeny=true"
     depends_on:
     - "mysql"
   mysql:
