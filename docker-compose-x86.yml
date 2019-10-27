@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: ./x86/Dockerfile
+    networks:
+     - traefik_proxy
     labels:
       - "traefik.enable=true"
       - "traefik.backend=spotweb"
@@ -29,3 +31,7 @@ services:
       MYSQL_USER: spotweb
       MYSQL_PASSWORD: spotweb
       MYSQL_DATABASE: spotweb
+      networks:
+traefik_proxy:
+    external:
+      name: plexguide
