@@ -31,7 +31,8 @@ services:
       MYSQL_USER: spotweb
       MYSQL_PASSWORD: spotweb
       MYSQL_DATABASE: spotweb
-      networks:
-traefik_proxy:
+
+networks:
+ traefik_proxy:
     external:
       name: plexguide
